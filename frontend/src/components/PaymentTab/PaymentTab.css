@@ -1,0 +1,375 @@
+.payment-stage {
+  padding: 26px;
+  border: 1px solid #e6ebe7;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(28, 53, 40, 0.045);
+}
+
+.payment-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.payment-heading h2 {
+  margin: 7px 0 5px;
+  color: #1b2b23;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 28px;
+  font-weight: 400;
+}
+
+.payment-heading > div:first-child > p:last-child {
+  margin: 0;
+  color: #87948b;
+  font-size: 11px;
+}
+
+.payment-secure {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid #e2ece3;
+  border-radius: 9px;
+  color: #548064;
+  background: #f7fbf7;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.75fr);
+  align-items: start;
+  gap: 17px;
+}
+
+.payment-main {
+  display: grid;
+  gap: 15px;
+}
+
+.payment-trip-card,
+.payment-methods,
+.payment-summary {
+  border: 1px solid #e7ece7;
+  border-radius: 13px;
+  background: #fff;
+}
+
+.payment-trip-card {
+  padding: 19px;
+  background: #f9fbf8;
+}
+
+.payment-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  color: #6b7e71;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+}
+
+.payment-card-top > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.payment-card-top svg {
+  color: #528264;
+}
+
+.trip-date {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+.payment-route {
+  display: grid;
+  grid-template-columns: minmax(90px, 1fr) minmax(70px, 0.9fr) minmax(100px, 1fr);
+  align-items: center;
+  gap: 10px;
+  margin: 26px 0 20px;
+}
+
+.payment-route > div:not(.payment-route-line) {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.payment-route strong {
+  color: #26372e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.payment-route small {
+  color: #76847b;
+  font-size: 10px;
+}
+
+.payment-route-line {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: #5c8b6c;
+  font-size: 11px;
+}
+
+.payment-route-line span {
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed #bdd0c0;
+}
+
+.payment-bus-name {
+  padding-top: 12px;
+  border-top: 1px solid #e6ece6;
+  color: #67776d;
+  font-size: 10px;
+}
+
+.payment-methods {
+  padding: 19px;
+}
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.section-title-row h3,
+.payment-summary h3 {
+  margin: 0;
+  color: #26372e;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.section-title-row p {
+  margin: 5px 0 0;
+  color: #8a968e;
+  font-size: 9px;
+}
+
+.section-title-row > svg {
+  color: #619071;
+  font-size: 13px;
+}
+
+.razorpay-payment-note {
+  display: flex;
+  gap: 9px;
+  margin-top: 12px;
+  padding: 11px;
+  border: 1px solid #e1ece1;
+  border-radius: 9px;
+  color: #548064;
+  background: #f5faf5;
+}
+
+.razorpay-payment-note > svg {
+  flex: 0 0 auto;
+  margin-top: 1px;
+  font-size: 12px;
+}
+
+.razorpay-payment-note p {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+}
+
+.razorpay-payment-note strong {
+  font-size: 9px;
+}
+
+.razorpay-payment-note span {
+  color: #7a8a7f;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.payment-summary {
+  padding: 19px;
+  background: #fbfcfa;
+}
+
+.payment-summary h3 {
+  margin-bottom: 15px;
+}
+
+.summary-bus {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e9eee9;
+}
+
+.summary-bus-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border-radius: 9px;
+  color: #397455;
+  background: #edf5ef;
+}
+
+.summary-bus strong,
+.summary-bus small {
+  display: block;
+}
+
+.summary-bus strong {
+  color: #35453c;
+  font-size: 10px;
+}
+
+.summary-bus small {
+  margin-top: 4px;
+  color: #8a968e;
+  font-size: 8px;
+}
+
+.summary-passengers {
+  padding: 14px 0;
+  border-bottom: 1px solid #e9eee9;
+}
+
+.summary-passengers > span {
+  color: #87948b;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+}
+
+.summary-passengers p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 9px 0 0;
+}
+
+.summary-passengers p strong {
+  color: #46564b;
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.summary-passengers p small {
+  color: #8a968e;
+  font-size: 8px;
+}
+
+.summary-costs {
+  padding-top: 7px;
+}
+
+.summary-costs p {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 9px 0;
+  color: #7e8b82;
+  font-size: 9px;
+}
+
+.summary-costs p strong {
+  color: #53645a;
+  font-size: 9px;
+  font-weight: 650;
+}
+
+.summary-costs .summary-total {
+  margin-top: 13px;
+  padding-top: 13px;
+  border-top: 1px solid #e4eae4;
+  color: #26372e;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.summary-costs .summary-total strong {
+  color: #1d5b48;
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.payment-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.payment-actions .booking-primary,
+.payment-actions .booking-secondary {
+  width: 100%;
+  min-height: 42px;
+  font-size: 9px;
+}
+
+.payment-actions .booking-secondary {
+  justify-self: center;
+}
+
+.payment-fine-print {
+  margin: 11px 0 0;
+  color: #9aa49d;
+  text-align: center;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .payment-stage {
+    padding: 18px 14px;
+  }
+
+  .payment-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .payment-trip-card,
+  .payment-methods,
+  .payment-summary {
+    padding: 15px;
+  }
+
+  .payment-route {
+    grid-template-columns: minmax(75px, 1fr) minmax(40px, 0.7fr) minmax(95px, 1fr);
+    gap: 6px;
+  }
+
+  .payment-route strong {
+    font-size: 16px;
+  }
+
+  .payment-card-top {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

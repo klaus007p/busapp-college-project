@@ -1,0 +1,479 @@
+.ticket-page {
+  min-height: 100vh;
+  padding: 0 24px 48px;
+  color: #17241f;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(221, 233, 215, 0.45), transparent 25%),
+    #f6f7f3;
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: min(100%, 1030px);
+  min-height: 76px;
+  margin: 0 auto;
+  border-bottom: 1px solid #e8ece7;
+}
+
+.ticket-confirmed {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #518061;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+}
+
+.ticket-confirmed svg {
+  display: grid;
+  width: 18px;
+  height: 18px;
+  padding: 4px;
+  border-radius: 50%;
+  color: white;
+  background: #5a956d;
+}
+
+.ticket-booked-alert {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: min(100%, 740px);
+  margin: 18px auto 0;
+  padding: 11px 16px;
+  border: 1px solid #d5e8d8;
+  border-radius: 9px;
+  color: #356847;
+  background: #edf7ee;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.ticket-booked-alert svg {
+  flex: 0 0 auto;
+}
+
+.ticket-success {
+  display: grid;
+  justify-items: center;
+  margin: 38px auto 23px;
+  text-align: center;
+}
+
+.success-check {
+  display: grid;
+  width: 43px;
+  height: 43px;
+  margin-bottom: 15px;
+  place-items: center;
+  border: 1px solid #d5e8d8;
+  border-radius: 50%;
+  color: #3e8054;
+  background: #edf7ee;
+  font-size: 16px;
+}
+
+.ticket-success h1 {
+  margin: 7px 0 6px;
+  color: #1b2b23;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 400;
+}
+
+.ticket-intro {
+  margin: 0;
+  color: #87948b;
+  font-size: 11px;
+}
+
+.ticket-card {
+  width: min(100%, 740px);
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1px solid #e3eae3;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 15px 40px rgba(28, 53, 40, 0.07);
+}
+
+.ticket-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 21px 25px;
+  border-bottom: 1px dashed #dfe7df;
+}
+
+.ticket-card-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #1d5b48;
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.ticket-card-brand span {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border-radius: 9px;
+  color: white;
+  background: #1d5b48;
+  font-size: 13px;
+}
+
+.ticket-reference {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: right;
+}
+
+.ticket-reference small {
+  color: #89968d;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+}
+
+.ticket-reference strong {
+  color: #293a30;
+  font-size: 12px;
+  letter-spacing: 0.6px;
+}
+
+.ticket-route {
+  display: grid;
+  grid-template-columns: minmax(120px, 1fr) minmax(90px, 0.8fr) minmax(120px, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 28px 25px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.ticket-city {
+  display: grid;
+  grid-template-columns: 19px 1fr;
+  align-items: center;
+  column-gap: 7px;
+}
+
+.ticket-city > span {
+  display: grid;
+  grid-row: span 3;
+  width: 19px;
+  height: 19px;
+  place-items: center;
+  border-radius: 6px;
+  color: #4b8a63;
+  background: #edf5ef;
+  font-size: 8px;
+}
+
+.ticket-city small {
+  color: #95a098;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+}
+
+.ticket-city strong {
+  margin-top: 5px;
+  color: #26372e;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.ticket-city em {
+  margin-top: 5px;
+  color: #819087;
+  font-size: 9px;
+  font-style: normal;
+}
+
+.ticket-route-art {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #548064;
+  font-size: 12px;
+}
+
+.ticket-route-art span {
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed #c4d5c7;
+}
+
+.ticket-details-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 22px;
+  padding: 21px 25px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.ticket-details-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.ticket-details-grid small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #94a097;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.7px;
+}
+
+.ticket-details-grid small svg {
+  color: #609072;
+}
+
+.ticket-details-grid strong {
+  color: #46564b;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.ticket-passengers {
+  padding: 19px 25px;
+  border-bottom: 1px solid #edf0ed;
+}
+
+.ticket-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 11px;
+}
+
+.ticket-section-heading h2 {
+  margin: 0;
+  color: #33443a;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ticket-section-heading span {
+  color: #8d9991;
+  font-size: 8px;
+}
+
+.ticket-passenger-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 0;
+}
+
+.passenger-initial {
+  display: grid;
+  width: 26px;
+  height: 26px;
+  place-items: center;
+  border-radius: 50%;
+  color: #417b58;
+  background: #eff6ef;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.ticket-passenger-row strong {
+  flex: 1;
+  color: #47574d;
+  font-size: 9px;
+}
+
+.ticket-passenger-row small {
+  color: #87948b;
+  font-size: 8px;
+}
+
+.ticket-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 25px 6px;
+  color: #65756a;
+  font-size: 10px;
+}
+
+.ticket-total strong {
+  color: #1d5b48;
+  font-size: 17px;
+}
+
+.ticket-demo-note {
+  margin: 0;
+  padding: 7px 25px 19px;
+  color: #9aa49d;
+  font-size: 8px;
+}
+
+.ticket-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.ticket-actions .booking-primary {
+  min-height: 42px;
+  font-size: 10px;
+}
+
+.ticket-print {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid #dce6dd;
+  border-radius: 9px;
+  color: #557060;
+  background: #fff;
+  font: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.ticket-save-hint {
+  margin: 10px auto 0;
+  color: #87948b;
+  font-size: 10px;
+  text-align: center;
+}
+
+.ticket-empty {
+  display: grid;
+  justify-items: center;
+  width: min(100%, 440px);
+  margin: 14vh auto;
+  padding: 35px;
+  border: 1px solid #e3eae3;
+  border-radius: 16px;
+  background: #fff;
+  text-align: center;
+}
+
+.ticket-empty > span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  place-items: center;
+  border-radius: 13px;
+  color: #397455;
+  background: #edf5ef;
+}
+
+.ticket-empty h1 {
+  margin: 0 0 7px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 25px;
+  font-weight: 400;
+}
+
+.ticket-empty p {
+  margin: 0 0 20px;
+  color: #87948b;
+  font-size: 11px;
+}
+
+@media (max-width: 550px) {
+  .ticket-page {
+    padding: 0 15px 30px;
+  }
+
+  .ticket-header {
+    min-height: 67px;
+  }
+
+  .ticket-confirmed {
+    font-size: 8px;
+  }
+
+  .ticket-card-header,
+  .ticket-route,
+  .ticket-details-grid,
+  .ticket-passengers {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .ticket-route {
+    grid-template-columns: minmax(90px, 1fr) minmax(50px, 0.55fr) minmax(100px, 1fr);
+    gap: 8px;
+  }
+
+  .ticket-city strong {
+    font-size: 17px;
+  }
+
+  .ticket-details-grid {
+    gap: 16px 10px;
+  }
+
+  .ticket-total,
+  .ticket-demo-note {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .ticket-actions {
+    flex-direction: column;
+  }
+
+  .ticket-actions .booking-primary,
+  .ticket-print {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media print {
+  .ticket-page {
+    min-height: 0;
+    padding: 0;
+    color: #17241f;
+    background: #fff !important;
+  }
+
+  .ticket-actions,
+  .ticket-header,
+  .ticket-save-hint,
+  .ticket-booked-alert {
+    display: none;
+  }
+
+  .ticket-success {
+    margin: 0 0 16px;
+  }
+
+  .ticket-card {
+    width: 100%;
+    break-inside: avoid;
+    border-color: #aaa;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .ticket-passenger-row,
+  .ticket-details-grid > div {
+    break-inside: avoid;
+  }
+}

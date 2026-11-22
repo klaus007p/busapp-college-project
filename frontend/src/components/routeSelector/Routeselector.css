@@ -1,0 +1,255 @@
+.trip-search {
+  padding: 27px;
+  border: 1px solid #e6ebe7;
+  border-radius: 17px;
+  background: #fff;
+  box-shadow: 0 12px 30px rgba(28, 53, 40, 0.045);
+}
+
+.trip-search-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 23px;
+}
+
+.trip-search-heading h2 {
+  margin: 8px 0 5px;
+  color: #1b2b23;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 400;
+}
+
+.booking-eyebrow {
+  margin: 0;
+  color: #58826b;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 1.5px;
+}
+
+.booking-muted {
+  margin: 0;
+  color: #88948d;
+  font-size: 12px;
+}
+
+.search-icon {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border-radius: 12px;
+  color: #2a7155;
+  background: #edf5ef;
+}
+
+.trip-fields {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 34px minmax(140px, 1fr) minmax(140px, 1fr) minmax(120px, 0.75fr);
+  align-items: end;
+  gap: 12px;
+}
+
+.trip-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 8px;
+  margin: 0;
+}
+
+.trip-field > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #718078;
+  font-size: 9px;
+  font-weight: 750;
+  letter-spacing: 0.8px;
+}
+
+.trip-field > span svg {
+  color: #4a8967;
+  font-size: 11px;
+}
+
+.trip-field select,
+.trip-field input,
+.time-field input {
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+  padding: 0 11px;
+  border: 1px solid #e1e8e2;
+  border-radius: 9px;
+  outline: none;
+  color: #27382f;
+  background: #fbfcfa;
+  font: inherit;
+  font-size: 11px;
+}
+
+.trip-field select:focus,
+.trip-field input:focus,
+.time-field input:focus {
+  border-color: #5c9276;
+  box-shadow: 0 0 0 3px rgba(54, 119, 87, 0.1);
+}
+
+.swap-cities {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
+  place-items: center;
+  border: 1px solid #dfe9e1;
+  border-radius: 50%;
+  color: #4a8967;
+  background: #fff;
+  cursor: pointer;
+  transition: color 150ms ease, background 150ms ease, transform 150ms ease;
+}
+
+.swap-cities:hover {
+  color: #fff;
+  background: #1d5b48;
+  transform: rotate(180deg);
+}
+
+.trip-search-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 21px;
+}
+
+.time-field {
+  display: grid;
+  grid-template-columns: 150px 140px;
+  align-items: center;
+  gap: 7px 10px;
+}
+
+.time-field label {
+  color: #56665d;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.time-field input {
+  height: 37px;
+}
+
+.time-field small {
+  grid-column: 1 / -1;
+  color: #929e96;
+  font-size: 9px;
+  line-height: 1.45;
+}
+
+.booking-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 9px;
+  color: #fff;
+  background: #1d5b48;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.booking-primary:hover:not(:disabled) {
+  background: #174838;
+  transform: translateY(-1px);
+}
+
+.booking-primary:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.search-submit {
+  min-width: 144px;
+}
+
+.booking-inline-error {
+  margin: 14px 0 0;
+  color: #9c3d36;
+  font-size: 11px;
+}
+
+@media (max-width: 960px) {
+  .trip-fields {
+    grid-template-columns: minmax(0, 1fr) 34px minmax(0, 1fr);
+  }
+
+  .trip-field:nth-of-type(3),
+  .trip-field:nth-of-type(4) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .trip-search {
+    padding: 20px 16px;
+  }
+
+  .trip-search-heading h2 {
+    font-size: 23px;
+  }
+
+  .trip-fields {
+    grid-template-columns: 1fr 34px 1fr;
+    gap: 12px 8px;
+  }
+
+  .trip-field:nth-of-type(3) {
+    grid-column: 1 / 2;
+  }
+
+  .trip-field:nth-of-type(4) {
+    grid-column: 3 / 4;
+  }
+
+  .trip-field:nth-of-type(5) {
+    grid-column: 1 / -1;
+  }
+
+  .trip-search-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .time-field {
+    grid-template-columns: 1fr 130px;
+  }
+
+  .search-submit {
+    width: 100%;
+  }
+}
+
+@media (max-width: 390px) {
+  .trip-fields {
+    grid-template-columns: 1fr 30px 1fr;
+  }
+
+  .trip-field select,
+  .trip-field input {
+    font-size: 10px;
+  }
+
+  .time-field {
+    grid-template-columns: 1fr 110px;
+  }
+}

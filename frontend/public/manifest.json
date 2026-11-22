@@ -1,0 +1,15 @@
+{
+  "short_name": "Wayfare",
+  "name": "Wayfare - journeys made better",
+  "icons": [
+    {
+      "src": "wayfare.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#17392f",
+  "background_color": "#f6f7f3"
+}
