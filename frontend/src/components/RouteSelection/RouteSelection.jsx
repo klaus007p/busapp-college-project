@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { FaBus, FaCheck, FaRegUserCircle, FaSignOutAlt } from "react-icons/fa";
 import { getBusPrice } from "../bookingUtils";
@@ -6,7 +6,7 @@ import RouteSelector from "../routeSelector/Routeselector";
 import BusList from "../BusList/BusList";
 import SeatSelection from "../SeatSelection/SeatSelection";
 import PaymentTab from "../PaymentTab/PaymentTab";
-import { getCitiesFromApi, getRoutesFromApi } from "../routeSelector/routeApifunc";
+import { CITIES, getBusesForRoute } from "../routeSelector/routeCatalog";
 import "./RouteSelection.css";
 
 const initialTrip = {
@@ -24,11 +24,8 @@ const steps = [
 ];
 
 function RouteSelection({ history }) {
-    const [cities, setCities] = useState([]);
-    const [isLoadingCities, setIsLoadingCities] = useState(true);
-    const [isSearching, setIsSearching] = useState(false);
+    const cities = CITIES;
     const [hasSearched, setHasSearched] = useState(false);
-    const [searchError, setSearchError] = useState("");
     const [step, setStep] = useState(1);
     const [trip, setTrip] = useState(initialTrip);
     const [buses, setBuses] = useState([]);
@@ -36,57 +33,14 @@ function RouteSelection({ history }) {
     const [selectedSeats, setSelectedSeats] = useState([]);
     const [passengerDetails, setPassengerDetails] = useState({});
 
-    useEffect(() => {
-        let isMounted = true;
-        getCitiesFromApi()
-            .then((response) => {
-                if (isMounted) {
-                    setCities(response.data.cities || []);
-                }
-            })
-            .catch((error) => {
-                if (isMounted) {
-                    setSearchError(
-                        error.response && error.response.data && error.response.data.message
-                            ? error.response.data.message
-                            : "We could not load the available cities. Please try again."
-                    );
-                }
-            })
-            .finally(() => {
-                if (isMounted) {
-                    setIsLoadingCities(false);
-                }
-            });
-
-        return () => {
-            isMounted = false;
-        };
-    }, []);
-
-    const handleSearch = async (search) => {
+    const handleSearch = (search) => {
         setTrip(search);
-        setSearchError("");
         setHasSearched(true);
-        setIsSearching(true);
         setSelectedBus(null);
         setSelectedSeats([]);
         setPassengerDetails({});
-
-        try {
-            const response = await getRoutesFromApi(search.startCity, search.destination);
-            setBuses(response.data.bus || []);
-            setStep(1);
-        } catch (error) {
-            setBuses([]);
-            setSearchError(
-                error.response && error.response.data && error.response.data.message
-                    ? error.response.data.message
-                    : "We could not search this route. Please try again."
-            );
-        } finally {
-            setIsSearching(false);
-        }
+        setBuses(getBusesForRoute(search.startCity, search.destination));
+        setStep(1);
     };
 
     const handleSelectBus = (bus) => {
@@ -176,28 +130,19 @@ function RouteSelection({ history }) {
                     ))}
                 </nav>
 
-                {searchError && <p className="booking-error" role="alert">{searchError}</p>}
-
                 {step === 1 && (
                     <section className="booking-stage">
-                        {isLoadingCities ? (
-                            <div className="booking-loading" role="status">Loading available destinations...</div>
-                        ) : (
-                            <>
-                                <RouteSelector
-                                    cities={cities}
-                                    initialTrip={trip}
-                                    isLoading={isSearching}
-                                    onSearch={handleSearch}
-                                />
-                                <BusList
-                                    buses={buses}
-                                    trip={trip}
-                                    hasSearched={hasSearched}
-                                    onSelect={handleSelectBus}
-                                />
-                            </>
-                        )}
+                        <RouteSelector
+                            cities={cities}
+                            initialTrip={trip}
+                            onSearch={handleSearch}
+                        />
+                        <BusList
+                            buses={buses}
+                            trip={trip}
+                            hasSearched={hasSearched}
+                            onSelect={handleSelectBus}
+                        />
                     </section>
                 )}
 
