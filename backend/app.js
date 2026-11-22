@@ -42,13 +42,20 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-if (process.env.NODE_ENV !== 'production') {
-    const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:3000')
+const defaultOrigins = process.env.NODE_ENV === 'production'
+    ? ''
+    : 'http://localhost:3000,http://localhost:5173';
+const allowedOrigins = new Set(
+    (process.env.CORS_ORIGINS || defaultOrigins)
         .split(',')
         .map((origin) => origin.trim())
-        .filter(Boolean);
-    app.use(cors({ origin: allowedOrigins }));
-}
+        .filter(Boolean)
+);
+app.use(cors({
+    origin(origin, callback) {
+        callback(null, !origin || allowedOrigins.has(origin));
+    }
+}));
 app.use(passport.initialize());
 app.get('/health', (req, res) => {
     const databaseConnected = mongoose.connection.readyState === 1;
