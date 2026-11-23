@@ -7,3 +7,7 @@ export function createPaymentOrder(orderDetails) {
 export function verifyPayment(paymentDetails) {
     return api.post("/payments/verify", paymentDetails);
 }
+
+export function confirmCashOnDelivery(orderDetails) {
+    return api.post("/payments/cod", orderDetails);
+}
