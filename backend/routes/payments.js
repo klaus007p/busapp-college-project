@@ -168,4 +168,55 @@ router.post("/verify", async (req, res, next) => {
     }
 });
 
+router.post("/cod", async (req, res, next) => {
+    const body = req.body || {};
+    const busId = typeof body.busId === "string" ? body.busId : "";
+    const startCity = typeof body.startCity === "string" ? body.startCity.trim() : "";
+    const destination = typeof body.destination === "string" ? body.destination.trim() : "";
+    const seats = body.seats;
+
+    if (!busId || !startCity || !destination || startCity.toLowerCase() === destination.toLowerCase()) {
+        return res.status(400).json({ message: "Choose a valid bus route." });
+    }
+    if (!Array.isArray(seats) || seats.length < 1 || seats.length > 8) {
+        return res.status(400).json({ message: "Select between one and eight seats." });
+    }
+
+    try {
+        const bus = await findBusForOrder(busId, startCity, destination);
+        if (!bus) {
+            return res.status(404).json({ message: "This bus is no longer available for that route." });
+        }
+
+        const capacity = getBusCapacity(bus);
+        if (!isValidSeatSelection(seats, capacity, bus.seatsBooked, bus.availableSeats)) {
+            return res.status(409).json({ message: "One or more selected seats are no longer available." });
+        }
+
+        const pricePerSeat = bus.isDemo
+            ? DEMO_BUS_FARE
+            : Number.parseFloat(bus.pricePerSeat || bus.price);
+        let amount;
+        try {
+            amount = calculateAmountInPaise(pricePerSeat, seats.length);
+        } catch (error) {
+            if (error instanceof RangeError) {
+                return res.status(400).json({ message: error.message });
+            }
+            throw error;
+        }
+
+        return res.status(201).json({
+            confirmed: true,
+            reference: `WF${crypto.randomBytes(12).toString("hex").toUpperCase()}`,
+            amount,
+            total: amount / 100,
+            currency: "INR",
+            paymentMode: "cash"
+        });
+    } catch (error) {
+        return next(error);
+    }
+});
+
 module.exports = router;

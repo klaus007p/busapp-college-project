@@ -105,7 +105,10 @@ function TicketPage({ history }) {
                     <div><small><FaTicketAlt aria-hidden="true" /> SEATS</small><strong>{booking.seats.join(", ")}</strong></div>
                     <div>
                         <small><FaCheck aria-hidden="true" /> PAYMENT</small>
-                        <strong>{booking.paymentProvider} · {booking.paymentMode === "test" ? "Test mode" : "Verified"}</strong>
+                        <strong>
+                            {booking.paymentProvider}
+                            {booking.paymentMode === "test" ? " · Test mode" : booking.paymentMode === "cash" ? " · Pay at pickup" : " · Verified"}
+                        </strong>
                     </div>
                 </div>
 
@@ -125,7 +128,10 @@ function TicketPage({ history }) {
                     <strong>₹{Number(booking.total || 0).toLocaleString("en-IN")}</strong>
                 </div>
                 <p className="ticket-demo-note">
-                    Razorpay test payment verified; no real money was charged. This is not a confirmed real-world bus reservation.
+                    {booking.paymentMode === "cash"
+                        ? "Cash on delivery selected. Keep the exact ticket amount ready and pay when the ticket is delivered."
+                        : "Razorpay test payment verified; no real money was charged."}
+                    {" "}This is not a confirmed real-world bus reservation.
                     {booking.bus.isDemo && " The sample bus listing is not a scheduled service."}
                 </p>
             </article>

@@ -4,11 +4,12 @@ import { act } from "react-dom/test-utils";
 import { MemoryRouter, Route, Switch } from "react-router-dom";
 import RouteSelection from "./RouteSelection";
 import TicketPage from "../TicketPage/TicketPage";
-import { createPaymentOrder, verifyPayment } from "../PaymentTab/paymentApi";
+import { confirmCashOnDelivery, createPaymentOrder, verifyPayment } from "../PaymentTab/paymentApi";
 
 jest.mock("../PaymentTab/paymentApi", () => ({
     createPaymentOrder: jest.fn(),
-    verifyPayment: jest.fn()
+    verifyPayment: jest.fn(),
+    confirmCashOnDelivery: jest.fn()
 }));
 
 afterEach(() => {
@@ -103,4 +104,53 @@ test("completes the route, seat, payment and ticket steps", async () => {
     expect(getByText("Razorpay · Test mode")).toBeInTheDocument();
     fireEvent.click(getByRole("button", { name: /Save ticket as PDF/ }));
     expect(window.print).toHaveBeenCalledTimes(1);
+});
+
+test("completes direct checkout with cash on delivery", async () => {
+    window.scrollTo = jest.fn();
+    sessionStorage.setItem("authToken", "test-token");
+    sessionStorage.removeItem("bookingData");
+    confirmCashOnDelivery.mockResolvedValue({
+        data: {
+            confirmed: true,
+            reference: "WFCOD123",
+            amount: 65000,
+            total: 650,
+            currency: "INR",
+            paymentMode: "cash"
+        }
+    });
+
+    const { container, getByRole, getByLabelText, getByText } = render(
+        <MemoryRouter initialEntries={["/routes"]}>
+            <Switch>
+                <Route exact path="/routes" component={RouteSelection} />
+                <Route exact path="/getTicket" component={TicketPage} />
+            </Switch>
+        </MemoryRouter>
+    );
+
+    await flushUpdates();
+    fireEvent.change(container.querySelector('select[name="startCity"]'), { target: { value: "Pune" } });
+    fireEvent.change(container.querySelector('select[name="destination"]'), { target: { value: "Mumbai" } });
+    fireEvent.click(getByRole("button", { name: /Find buses/ }));
+    await flushUpdates();
+    fireEvent.click(getByRole("button", { name: /Choose seats/ }));
+    fireEvent.click(getByRole("button", { name: "Seat 1A, available" }));
+    fireEvent.change(getByLabelText("Full name"), { target: { value: "Casey Traveler" } });
+    fireEvent.click(getByRole("button", { name: /Continue/ }));
+
+    fireEvent.click(getByRole("radio", { name: /Cash on delivery/ }));
+    fireEvent.click(getByRole("button", { name: /Confirm booking · Pay ₹650 at pickup/ }));
+
+    await flushUpdates();
+    expect(confirmCashOnDelivery).toHaveBeenCalledWith({
+        busId: "demo-Pune-Mumbai",
+        startCity: "Pune",
+        destination: "Mumbai",
+        seats: ["1A"]
+    });
+    expect(getByRole("heading", { name: "Your journey is on the books." })).toBeInTheDocument();
+    expect(getByText(/Cash on delivery · Pay at pickup/)).toBeInTheDocument();
+    expect(getByText(/Keep the exact ticket amount ready/)).toBeInTheDocument();
 });
